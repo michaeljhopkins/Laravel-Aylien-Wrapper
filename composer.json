@@ -18,7 +18,7 @@
   ],
   "require": {
     "aylien/textapi": "dev-master",
-    "illuminate/support": "~5.1@dev"
+    "illuminate/support": "~5.*"
   },
   "autoload": {
     "psr-4": {
