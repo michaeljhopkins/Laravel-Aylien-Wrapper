@@ -1,0 +1,35 @@
+{
+  "license": "MIT",
+  "name": "hopkins/laravelaylienwrapper",
+  "description": "A laravel friendly wrapper around the Aylien PHP SDK",
+  "keywords": [
+    "laravel",
+    "aylien",
+    "sentiment",
+    "text",
+    "analysis"
+  ],
+  "authors": [
+    {
+      "name": "Michael Hopkins",
+      "email": "mhopkins321@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "aylien/textapi": "dev-master",
+    "illuminate/support": "~5.1@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hopkins\\LaravelAylienWrapper\\": "src"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-develop": "0.2-dev",
+      "dev-master": "0.1-dev"
+    }
+  },
+  "minimum-stability": "dev"
+}

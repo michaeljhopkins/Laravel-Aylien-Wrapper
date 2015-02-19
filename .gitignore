@@ -1,0 +1,6 @@
+/vendor
+/composer.phar
+composer.lock
+/.idea
+/.php_cs
+/_ide_helper.php
