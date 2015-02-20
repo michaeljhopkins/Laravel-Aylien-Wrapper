@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Laravel-aylien-wrapper : A wrapper around the Aylien PHP SDK to make it Laravel 5 friendly">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Laravel-aylien-wrapper</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/michael-hopkins/Laravel-Aylien-Wrapper">View on GitHub</a>
+
+          <h1 id="project_title">Laravel-aylien-wrapper</h1>
+          <h2 id="project_tagline">A wrapper around the Aylien PHP SDK to make it Laravel 5 friendly</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/michael-hopkins/Laravel-Aylien-Wrapper/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/michael-hopkins/Laravel-Aylien-Wrapper/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="a-laravel-5-friendly-wrapper-around-the-aylien-php-sdk" class="anchor" href="#a-laravel-5-friendly-wrapper-around-the-aylien-php-sdk" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Laravel 5 friendly wrapper around the Aylien PHP SDK</h2>
+
+<p><a href="http://aylien.com">Aylien</a> is a package consisting of eight different Natural Language Processing, Information Retrieval and Machine Learning APIs that can be adapted to your processes and applications with relative ease. Admittidly this wrapper doesn't add a significant value to their extensive, well documented <a href="https://github.com/AYLIEN/aylien_textapi_php">PHP SDK</a>, as the primary purpose is to provide the facade <code>Aylien::</code> to your Laravel 5 app.</p>
+
+<hr>
+
+<p><a href="https://packagist.org/packages/hopkins/laravel-aylien-wrapper"><img src="https://poser.pugx.org/hopkins/laravel-aylien-wrapper/version.svg" alt="Latest Stable Version"></a> 
+<a href="https://packagist.org/packages/hopkins/laravel-aylien-wrapper"><img src="https://poser.pugx.org/hopkins/laravel-aylien-wrapper/downloads.svg" alt="Total Downloads"></a>
+<a href="//packagist.org/packages/hopkins/laravel-aylien-wrapper"><img src="https://poser.pugx.org/hopkins/laravel-aylien-wrapper/v/unstable.svg" alt="Latest Unstable Version"></a> 
+<a href="https://packagist.org/packages/hopkins/laravel-aylien-wrapper"><img src="https://poser.pugx.org/hopkins/laravel-aylien-wrapper/license.svg" alt="License"></a>
+<a href="https://insight.sensiolabs.com/projects/476da0a5-d091-4fcb-8115-d07765b2214e"><img src="https://insight.sensiolabs.com/projects/476da0a5-d091-4fcb-8115-d07765b2214e/mini.png" alt="SensioLabsInsight"></a></p>
+
+<hr>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>Require this package in your <code>composer.json</code> and update composer. Run/add either of the below two commands</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-s1"><span class="pl-pds">"</span>hopkins/laravel-aylien-wrapper<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>dev-master<span class="pl-pds">"</span></span></span></pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-c1">composer</span> <span class="pl-k">require</span> <span class="pl-c1">hopkins</span><span class="pl-k">/</span><span class="pl-c1">laravel</span><span class="pl-k">-</span><span class="pl-c1">aylien</span><span class="pl-k">-</span><span class="pl-c1">wrapper</span><span class="pl-k">=</span><span class="pl-c1">dev</span><span class="pl-k">-</span><span class="pl-c1">master</span></span></pre></div>
+
+<p>After updating composer, add the ServiceProvider to the providers array in <code>app/config/app.php</code></p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-s1"><span class="pl-pds">'</span>Hopkins\LaravelAylienWrapper\Providers\AylienServiceProvider<span class="pl-pds">'</span></span>,</span></pre></div>
+
+<p>and the facade into your array of facades</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-s1"><span class="pl-pds">'</span>Aylien<span class="pl-pds">'</span></span>    <span class="pl-k">=&gt;</span> <span class="pl-s1"><span class="pl-pds">'</span>Hopkins\LaravelAylienWrapper\Facades\Aylien<span class="pl-pds">'</span></span>,</span></pre></div>
+
+<p>Run the artisan command to bring the config into your project</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-c1">php</span> <span class="pl-c1">artisan</span> <span class="pl-c1">vendor</span>:<span class="pl-c1">publish</span></span></pre></div>
+
+<p>I put my api keys in the .env file. To use this style of config you can copy the below into your <code>config/aylien.php</code></p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-k">return</span> [</span>
+<span class="pl-s2">    <span class="pl-s1"><span class="pl-pds">'</span>app_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> env(<span class="pl-s1"><span class="pl-pds">'</span>API_AYLIEN_APP_ID<span class="pl-pds">'</span></span>),</span>
+<span class="pl-s2">    <span class="pl-s1"><span class="pl-pds">'</span>app_key<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> env(<span class="pl-s1"><span class="pl-pds">'</span>API_AYLIEN_APP_KEY<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s2">];</span></pre></div>
+
+<hr>
+
+<h1>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h1>
+
+<p>Aylien provides a number of great examples on their site, as well as <a href="https://developer.aylien.com/getting-started/php">terrific documentation</a>. However I'd feel bad if I didn't at least provide one example. The example at the bottom of the readme uses the Sentiment analysis, however all of the following are available for use</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Sentiment();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Extract();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Classify();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Concepts();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Hashtags();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Entities();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Language();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Related();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Summarize();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Microformats();</span>
+<span class="pl-s2"><span class="pl-s3">Aylien</span><span class="pl-k">::</span>UnsupervisedClassify();</span></pre></div>
+
+<p>Let's say you want to log all messages you receive from a chat/email client/contact form. You'd have a <code>Message.php</code> model in this case that saved to your database. By adding a <code>public static function boot()</code> method we can utilize Laravel's <a href="http://laravel.com/docs/master/eloquent#model-events">model events</a> to make sure first we get the message into the db, and then take the time to call Aylien's API. The below example is using the Sentiment anaylisis</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-st">class</span> <span class="pl-en">Message</span> <span class="pl-s">extends</span> <span class="pl-e">BaseModel</span></span>
+<span class="pl-s2">{</span>
+<span class="pl-s2">    <span class="pl-s">protected</span> <span class="pl-vo">$guarded</span> <span class="pl-k">=</span> [<span class="pl-s1"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s2">    <span class="pl-s">public</span> <span class="pl-s">static</span> <span class="pl-st">function</span> <span class="pl-en">boot</span>()</span>
+<span class="pl-s2">    {</span>
+<span class="pl-s2">        <span class="pl-st">parent</span><span class="pl-k">::</span>boot();</span>
+<span class="pl-s2">        <span class="pl-s3">Message</span><span class="pl-k">::</span>created(<span class="pl-st">function</span>(<span class="pl-s3">Message</span> <span class="pl-vo">$message</span>)</span>
+<span class="pl-s2">        {</span>
+<span class="pl-s2">            <span class="pl-vo">$aylienResponse</span> <span class="pl-k">=</span> <span class="pl-s3">\</span><span class="pl-s3">Aylien</span><span class="pl-k">::</span>Sentiment([<span class="pl-s1"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-vo">$message</span><span class="pl-k">-&gt;</span><span class="pl-vo">message</span>]);</span>
+<span class="pl-s2">            <span class="pl-vo">$message</span><span class="pl-k">-&gt;</span>update([</span>
+<span class="pl-s2">                <span class="pl-s1"><span class="pl-pds">'</span>polarity<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-vo">$aylienResponse</span><span class="pl-k">-&gt;</span><span class="pl-vo">polarity</span>,</span>
+<span class="pl-s2">                <span class="pl-s1"><span class="pl-pds">'</span>polarity_confidence<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-vo">$aylienResponse</span><span class="pl-k">-&gt;</span><span class="pl-vo">polarity_confidence</span>,</span>
+<span class="pl-s2">                <span class="pl-s1"><span class="pl-pds">'</span>subjectivity<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-vo">$aylienResponse</span><span class="pl-k">-&gt;</span><span class="pl-vo">subjectivity</span>,</span>
+<span class="pl-s2">                <span class="pl-s1"><span class="pl-pds">'</span>subjectivity_confidence<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-vo">$aylienResponse</span><span class="pl-k">-&gt;</span><span class="pl-vo">subjectivity_confidence</span></span>
+<span class="pl-s2">            ]);</span>
+<span class="pl-s2">        });</span>
+<span class="pl-s2">    }</span>
+<span class="pl-s2">}</span></pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Laravel-aylien-wrapper maintained by <a href="https://github.com/michael-hopkins">michael-hopkins</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-59291105-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
