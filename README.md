@@ -1,5 +1,7 @@
 ## A Laravel 5 friendly wrapper around the Aylien PHP SDK
 
+<img src="http://i.imgur.com/zwCSbUS.png">
+
 [Aylien](http://aylien.com) is a package consisting of eight different Natural Language Processing, Information Retrieval and Machine Learning APIs that can be adapted to your processes and applications with relative ease. Admittidly this wrapper doesn't add a significant value to their extensive, well documented [PHP SDK](https://github.com/AYLIEN/aylien_textapi_php), as the primary purpose is to provide the facade `Aylien::` to your Laravel 5 app.
 
 ---
