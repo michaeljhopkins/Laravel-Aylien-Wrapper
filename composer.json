@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "name": "hopkins/laravelaylienwrapper",
+  "name": "hopkins/laravel-aylien-wrapper",
   "description": "A laravel friendly wrapper around the Aylien PHP SDK",
   "keywords": [
     "laravel",
