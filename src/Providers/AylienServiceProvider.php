@@ -24,12 +24,13 @@ class AylienServiceProvider extends ServiceProvider {
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'aylien');
 
-        $this->app['hopkins.aylien'] = $this->app->share(function($app)
-        {
-            return new TextAPI(
-                $app['config']->get('aylien.app_id'),
-                $app['config']->get('aylien.app_key')
-            );
+        $this->app->singleton('Aylien', function($app) {
+            $config = config('aylien');
+            if (!$config) {
+                throw new \RunTimeException('Aylien configuration not found. Please run `php artisan vendor:publish`');
+            }
+
+            return new TextAPI($config);
         });
     }
 }
