@@ -9,6 +9,6 @@ class Aylien extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'hopkins.aylien'; }
+    protected static function getFacadeAccessor() { return 'Aylien'; }
 
 }
