@@ -30,7 +30,7 @@ class AylienServiceProvider extends ServiceProvider {
                 throw new \RunTimeException('Aylien configuration not found. Please run `php artisan vendor:publish`');
             }
 
-            return new TextAPI($config);
+            return new TextAPI($config['app_id'] , $config['app_key']);
         });
     }
 }
